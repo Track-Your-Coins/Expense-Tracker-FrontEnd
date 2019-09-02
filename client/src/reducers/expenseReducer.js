@@ -15,7 +15,7 @@ import {
 
 const initialState = {};
 
-export const incomeReducer = (state = initialState, action) => {
+export const expenseReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_EXPENSE_START:
       return {};
