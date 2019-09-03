@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 //import axiosWithAuth from "../../../utils/axiosWithAuth";
-import { loginActions } from "../../../actions/loginActions";
+import { login } from "../../../actions/loginActions";
 import { Button } from "reactstrap";
-import { Field, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 
 const LoginForm = ({ errors, touched, values }) => {
@@ -47,7 +47,7 @@ const FormikLoginForm = withFormik({
     // axiosWithAuth
     //   .post(url, values)
     //   .then(res => {
-    //     props.props.loginActions(res.data.id);
+    //     props.props.login(res.data.id);
     //     props.props.history.push(`/dashboard/${res.data.id}`);
     //   })
     //   .catch(err => console.log(err));
@@ -62,5 +62,5 @@ const mapStatetoProps = state => {
 
 export default connect(
   mapStatetoProps,
-  { loginActions }
+  { login }
 )(FormikLoginForm);

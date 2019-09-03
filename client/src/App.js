@@ -9,9 +9,9 @@ function App() {
     <div className="App">
       <NavBar />
       <h1>Track Your Coins in App</h1>
-      <Swicth>
+      <Switch>
         <Route path="/login" component={LoginForm} />
-      </Swicth>
+      </Switch>
     </div>
   );
 }
