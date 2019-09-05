@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -28,16 +29,25 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="success" light expand="md">
+        <Navbar
+          style={{ backgroundColor: "#ffffff" }}
+          fixed="top"
+          light
+          expand="md"
+        >
           <NavbarBrand href="/">Track Your Coins</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login">Login</NavLink>
+                <NavLink onClick={() => this.props.history.push("/login")}>
+                  Login
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/signup">SignUp</NavLink>
+                <NavLink onClick={() => this.props.history.push("/signup")}>
+                  SignUp
+                </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -58,4 +68,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default withRouter(NavBar);
