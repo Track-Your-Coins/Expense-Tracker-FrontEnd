@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   image: {
     backgroundImage: `url(${LoginPhoto})`,
     backgroundRepeat: "no-repeat",
-    //backgroundSize: "cover",
+    backgroundSize: "cover",
     backgroundPosition: "center"
   },
   paper: {
@@ -117,7 +117,7 @@ const LoginFormStyles = () => {
 class Login extends React.Component {
   render() {
     return (
-      <div>
+      <div id="login-container">
         <LoginFormStyles />
       </div>
     );
