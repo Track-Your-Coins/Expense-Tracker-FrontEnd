@@ -57,7 +57,7 @@ const LoginFormStyles = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -65,10 +65,10 @@ const LoginFormStyles = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -82,10 +82,6 @@ const LoginFormStyles = () => {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -93,18 +89,13 @@ const LoginFormStyles = () => {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link onClick variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item>
-                <Link onClick variant="body2">
+                <Button href="/signup" color="success">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </Button>
               </Grid>
             </Grid>
           </form>
