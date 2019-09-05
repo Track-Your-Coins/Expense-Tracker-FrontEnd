@@ -13,7 +13,7 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/login" component={LoginForm} />
-        {/* <Route path="/register" component={Register} />
+        {/* <Route path="/signup" component={Register} />
         <Route path="/dashboard" component={Dashboard} /> */}
       </Switch>
       <Footer />

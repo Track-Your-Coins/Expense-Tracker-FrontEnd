@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -96,12 +97,12 @@ const LoginFormStyles = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link onClick variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link onClick variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -123,4 +124,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
