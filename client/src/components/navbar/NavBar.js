@@ -28,7 +28,12 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="success" light expand="md">
+        <Navbar
+          style={{ backgroundColor: "#ffffff" }}
+          fixed="top"
+          light
+          expand="md"
+        >
           <NavbarBrand href="/">Track Your Coins</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

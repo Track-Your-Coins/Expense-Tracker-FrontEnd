@@ -28,7 +28,12 @@ class LoggedInNavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="success" light expand="md">
+        <Navbar
+          style={{ backgroundColor: "#ffffff" }}
+          fixed="top"
+          light
+          expand="md"
+        >
           <NavbarBrand href="/">Track Your Coins</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -37,7 +42,7 @@ class LoggedInNavBar extends React.Component {
                 <NavLink href="/login">Dashboard</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/signup">Logout</NavLink>
+                <NavLink>Logout</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
