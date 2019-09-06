@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
     <div>
-      {token ? <LoggedInNavBar /> : <NavBar />}
+        {token ? <LoggedInNavBar /> : <NavBar />}
       </div>
       <div id="app-container">
         <Switch>

@@ -25,12 +25,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column"
   },
   footer: {
-    //padding: theme.spacing(2),
     bottom: 0,
     width: "100%",
     height: "40px",
-    //position: absolute,
-    //marginTop: "auto",
+    marginTop: "auto",
     backgroundColor: "red"
   }
 }));
