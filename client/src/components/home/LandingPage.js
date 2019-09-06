@@ -1,8 +1,7 @@
 import React from "react";
-//import { moneyTransfer } from "../images/moneytransfer.png";
+import "./landingpage.css";
 
 const LandingPage = () => {
-  console.log(moneyTransfer);
   const Image = require("../images/moneytransfer.png");
   return (
     <div>

@@ -1,5 +1,5 @@
 #app-container {
-  min-height: calc(100vh - 55px);
+  min-height: calc(100vh - 50px);
   margin-top: 80px;
   text-align: center;
 }
