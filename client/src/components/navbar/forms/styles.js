@@ -28,5 +28,3 @@ export const SignInFormStyles = {
     margin: "24px 0 16px"
   }
 };
-
-
