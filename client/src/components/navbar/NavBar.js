@@ -32,7 +32,7 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar
-          style={{ backgroundColor: "#ffffff" }}
+          style={{ backgroundColor: "#ffffff", padding: "10px" }}
           fixed="top"
           light
           expand="md"
