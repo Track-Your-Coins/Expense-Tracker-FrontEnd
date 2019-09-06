@@ -1,10 +1,12 @@
 import React from "react";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { login } from "../../../actions/loginActions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-//import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +14,32 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { SignInFormStyles } from "./styles";
 
 class Login extends React.Component {
+  state = {
+    credentials: {
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  loginChange = e => {
+    e.preventDefault();
+    this.props.login(this.state.credentials).then(res => {
+      if (res) {
+        this.props.history.push("/dashboard");
+      }
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -27,7 +55,11 @@ class Login extends React.Component {
             <Typography component="h1" variant="h5">
               Log in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form
+              className={classes.form}
+              onSubmit={this.loginChange}
+              noValidate
+            >
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -38,6 +70,8 @@ class Login extends React.Component {
                 name="username"
                 autoComplete="username"
                 autoFocus
+                value={this.state.credentials.username}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -49,6 +83,8 @@ class Login extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={this.state.credentials.password}
+                onChange={this.handleChange}
               />
               <Button
                 type="submit"
@@ -57,13 +93,22 @@ class Login extends React.Component {
                 color="primary"
                 className={classes.submit}
               >
-                Log In
+                {this.props.loggingIn ? (
+                  <Loader
+                    type="ThreeDots"
+                    color="#ffffff"
+                    height={12}
+                    width={26}
+                  />
+                ) : (
+                  "Login"
+                )}
               </Button>
               <Grid container>
                 <Grid item>
                   <Button
                     onClick={() => this.props.history.push("/signup")}
-                    color="success"
+                    color="default"
                   >
                     {"Don't have an account? Sign Up"}
                   </Button>
@@ -77,4 +122,13 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(SignInFormStyles)(Login);
+//import state from loginReducer from rootReducer
+const mapStateToProps = state => ({
+  error: state.login.error,
+  loggingIn: state.login.loggingIn
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(withStyles(SignInFormStyles)(Login));

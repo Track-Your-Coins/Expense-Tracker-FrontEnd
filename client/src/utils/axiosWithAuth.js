@@ -5,10 +5,8 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     headers: {
+      "Content-Type": "application/json",
       Authorization: token
-    },
-    baseURL: ""
+    }
   });
 };
-
-//add baseURL once backend is deployed to heroku
