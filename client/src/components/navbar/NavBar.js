@@ -15,6 +15,7 @@ import {
   Button
   //ButtonDropdown
 } from "reactstrap";
+import "./navbar.css"
 
 class NavBar extends React.Component {
   state = {
@@ -32,12 +33,14 @@ class NavBar extends React.Component {
     return (
       <div>
         <Navbar
-          style={{ backgroundColor: "#ffffff" }}
+          style={{ backgroundColor: "#ffffff", padding: "10px" }}
           fixed="top"
           light
           expand="md"
         >
-          <NavbarBrand href="/">Track Your Coins</NavbarBrand>
+          <NavbarBrand onClick={() => this.props.history.push("/")}  id="navbarBrand">
+            Track Your Coins
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

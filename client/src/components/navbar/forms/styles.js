@@ -2,7 +2,7 @@ import LoginPhoto from "../../images/login.png";
 
 export const SignInFormStyles = {
   root: {
-    height: "100vh"
+    height: "auto"
   },
   image: {
     backgroundImage: `url(${LoginPhoto})`,
