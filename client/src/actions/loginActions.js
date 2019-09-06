@@ -1,14 +1,5 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-export const LOGIN_START = "LOGIN_START";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-
-export const login = creds => dispatch => {
-  dispatch({});
-  return axiosWithAuth();
-};
-
 //new user registration
 export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
@@ -28,4 +19,13 @@ export const signUp = newUser => dispatch => {
       console.log(err);
       dispatch({ type: SIGNUP_FAILURE, payload: err });
     });
+};
+
+export const LOGIN_START = "LOGIN_START";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+export const login = creds => dispatch => {
+  dispatch({});
+  return axiosWithAuth();
 };

@@ -1,10 +1,12 @@
 import React from "react";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { signUp } from "../../../actions/loginActions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-//import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +14,42 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { SignInFormStyles } from "./styles";
 
 class Register extends React.Component {
+  state = {
+    users: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      users: {
+        ...this.state,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  addNewUser = e => {
+    e.preventDefault();
+    this.props.addNewUser(this.state).then(res => {
+      if (res) {
+        this.props.history.push("/login");
+      }
+    });
+    this.setState({
+      users: {
+        firstname: "",
+        lastname: "",
+        username: "",
+        password: ""
+      }
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -99,4 +137,14 @@ class Register extends React.Component {
   }
 }
 
-export default withStyles(SignInFormStyles)(Register);
+//import state from loginReducer from rootReducer
+const mapStateToProps = state => ({
+  error: state.login.error,
+  addingUsers: state.login.addingUsers
+});
+
+export default connect(
+  mapStateToProps,
+  { addNewUser },
+  withStyles(SignInFormStyles)
+)(Register);
