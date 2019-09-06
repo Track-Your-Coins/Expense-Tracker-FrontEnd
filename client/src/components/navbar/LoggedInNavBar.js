@@ -10,7 +10,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Button
 } from "reactstrap";
 
 class LoggedInNavBar extends React.Component {
@@ -23,6 +24,12 @@ class LoggedInNavBar extends React.Component {
       ...this.state.isOpen,
       isOpen: !this.state.isOpen
     });
+  };
+
+  logOut = e => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    this.props.history.push("/login");
   };
 
   render() {
@@ -39,10 +46,12 @@ class LoggedInNavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login">Dashboard</NavLink>
+                <Button onClick={() => this.props.history.push("/dashboard")}>
+                  Dashboard
+                </Button>
               </NavItem>
               <NavItem>
-                <NavLink>Logout</NavLink>
+                <NavLink>Expenses</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -50,9 +59,11 @@ class LoggedInNavBar extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>View Profile</DropdownItem>
+                  <DropdownItem>Edit Profile</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Add New Expense</DropdownItem>
-                  <DropdownItem>Add New Income</DropdownItem>
+                  <DropdownItem>
+                    <Button onClick={this.logOut}>Logout</Button>
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
