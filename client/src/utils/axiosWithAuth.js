@@ -7,8 +7,6 @@ export const axiosWithAuth = () => {
     headers: {
       Authorization: token
     },
-    baseURL: ""
+    baseURL: "https://track-your-coins-be.herokuapp.com/"
   });
 };
-
-//add baseURL once backend is deployed to heroku
