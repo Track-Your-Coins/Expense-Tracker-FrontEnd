@@ -21,7 +21,7 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
   },
   footer: {
     padding: theme.spacing(2),
