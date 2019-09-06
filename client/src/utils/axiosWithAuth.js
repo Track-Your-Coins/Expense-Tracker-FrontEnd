@@ -5,8 +5,8 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     headers: {
+      "Content-Type": "application/json",
       Authorization: token
-    },
-    baseURL: "https://track-your-coins-be.herokuapp.com/"
+    }
   });
 };

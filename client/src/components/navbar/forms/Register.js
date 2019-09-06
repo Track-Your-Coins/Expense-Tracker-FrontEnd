@@ -35,17 +35,9 @@ class Register extends React.Component {
 
   addNewUser = e => {
     e.preventDefault();
-    this.props.addNewUser(this.state).then(res => {
+    this.props.signUp(this.state).then(res => {
       if (res) {
         this.props.history.push("/login");
-      }
-    });
-    this.setState({
-      users: {
-        firstname: "",
-        lastname: "",
-        username: "",
-        password: ""
       }
     });
   };
@@ -65,7 +57,11 @@ class Register extends React.Component {
             <Typography component="h1" variant="h5">
               Sign Up!
             </Typography>
-            <form className={classes.form} noValidate>
+            <form
+              className={classes.form}
+              onSubmit={this.addNewUser}
+              noValidate
+            >
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -76,6 +72,8 @@ class Register extends React.Component {
                 name="firstname"
                 autoComplete="firstname"
                 autoFocus
+                value={this.state.firstname}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -87,6 +85,8 @@ class Register extends React.Component {
                 name="lastname"
                 autoComplete="lastname"
                 autoFocus
+                value={this.state.lastname}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -98,6 +98,8 @@ class Register extends React.Component {
                 name="username"
                 autoComplete="username"
                 autoFocus
+                value={this.state.username}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -109,6 +111,8 @@ class Register extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={this.state.password}
+                onChange={this.handleChange}
               />
               <Button
                 type="submit"
@@ -117,13 +121,17 @@ class Register extends React.Component {
                 color="primary"
                 className={classes.submit}
               >
-                Submit
+                {this.props.addingUsers ? (
+                  <Loader type="Puff" color="#ffffff" height={12} width={26} />
+                ) : (
+                  "Signup"
+                )}
               </Button>
               <Grid container>
                 <Grid item>
                   <Button
                     onClick={() => this.props.history.push("/login")}
-                    color="success"
+                    color="default"
                   >
                     {"Already have an Account? Log in"}
                   </Button>
@@ -145,6 +153,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addNewUser },
-  withStyles(SignInFormStyles)
-)(Register);
+  { signUp }
+)(withStyles(SignInFormStyles)(Register));
