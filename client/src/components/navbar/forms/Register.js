@@ -16,8 +16,8 @@ import { SignInFormStyles } from "./styles";
 class Register extends React.Component {
   state = {
     users: {
-      firstname: "",
-      lastname: "",
+      first_name: "",
+      last_name: "",
       username: "",
       password: ""
     }
@@ -67,12 +67,12 @@ class Register extends React.Component {
                 margin="normal"
                 required
                 fullWidth
-                id="firstname"
+                id="first_name"
                 label="First Name"
-                name="firstname"
-                autoComplete="firstname"
+                name="first_name"
+                autoComplete="first_name"
                 autoFocus
-                value={this.state.users.firstname}
+                value={this.state.users.first_name}
                 onChange={this.handleChange}
               />
               <TextField
@@ -80,12 +80,12 @@ class Register extends React.Component {
                 margin="normal"
                 required
                 fullWidth
-                id="lastname"
+                id="last_name"
                 label="Last Name"
-                name="lastname"
-                autoComplete="lastname"
+                name="last_name"
+                autoComplete="last_name"
                 autoFocus
-                value={this.state.users.lastname}
+                value={this.state.users.last_name}
                 onChange={this.handleChange}
               />
               <TextField
