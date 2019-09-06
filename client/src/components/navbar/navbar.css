@@ -1,3 +1,8 @@
-.NavBar {
- 
+#navbarBrand {
+    cursor: pointer;
+}
+
+.logout-dropdown {
+    color: red;
+    font-weight: 40;
 }

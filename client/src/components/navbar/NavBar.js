@@ -37,7 +37,9 @@ class NavBar extends React.Component {
           light
           expand="md"
         >
-          <NavbarBrand href="/">Track Your Coins</NavbarBrand>
+          <NavbarBrand onClick={() => this.props.history.push("/")}  id="navbarBrand">
+            Track Your Coins
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

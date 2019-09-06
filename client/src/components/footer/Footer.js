@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "40px",
     marginTop: "auto",
-    backgroundColor: "red"
+    backgroundColor: "white"
   }
 }));
 
