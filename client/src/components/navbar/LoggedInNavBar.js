@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -12,6 +13,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Button
+  //ButtonDropdown
 } from "reactstrap";
 
 class LoggedInNavBar extends React.Component {
@@ -46,12 +48,15 @@ class LoggedInNavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Button onClick={() => this.props.history.push("/dashboard")}>
+                <Button
+                  color="link"
+                  onClick={() => this.props.history.push("/dashboard")}
+                >
                   Dashboard
                 </Button>
               </NavItem>
               <NavItem>
-                <NavLink>Expenses</NavLink>
+                <Button color="link">Expenses</Button>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -62,7 +67,9 @@ class LoggedInNavBar extends React.Component {
                   <DropdownItem>Edit Profile</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    <Button onClick={this.logOut}>Logout</Button>
+                    <Button color="danger" onClick={this.logOut}>
+                      Logout
+                    </Button>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -74,4 +81,4 @@ class LoggedInNavBar extends React.Component {
   }
 }
 
-export default LoggedInNavBar;
+export default withRouter(LoggedInNavBar);
