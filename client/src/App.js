@@ -7,6 +7,7 @@ import LoginForm from "./components/navbar/forms/Login";
 import Register from "./components/navbar/forms/Register";
 import Dashboard from "./components/home/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
+import LandingPage from "./components/home/LandingPage";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -16,6 +17,7 @@ function App() {
       {token ? <LoggedInNavBar /> : <NavBar />}
       <div id="app-container">
         <Switch>
+          <Route exact path="/" component={LandingPage} />
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={Register} />
           <Route path="/dashboard" component={Dashboard} />
