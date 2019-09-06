@@ -15,6 +15,7 @@ import {
   Button
   //ButtonDropdown
 } from "reactstrap";
+import "./navbar.css"
 
 class NavBar extends React.Component {
   state = {
