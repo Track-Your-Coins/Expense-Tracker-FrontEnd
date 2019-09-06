@@ -11,7 +11,9 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Button
+  //ButtonDropdown
 } from "reactstrap";
 
 class NavBar extends React.Component {
@@ -40,14 +42,20 @@ class NavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink onClick={() => this.props.history.push("/login")}>
+                <Button
+                  color="link"
+                  onClick={() => this.props.history.push("/login")}
+                >
                   Login
-                </NavLink>
+                </Button>
               </NavItem>
               <NavItem>
-                <NavLink onClick={() => this.props.history.push("/signup")}>
+                <Button
+                  color="link"
+                  onClick={() => this.props.history.push("/signup")}
+                >
                   SignUp
-                </NavLink>
+                </Button>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

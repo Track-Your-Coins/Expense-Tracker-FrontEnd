@@ -1,10 +1,12 @@
 import React from "react";
+import Loader from "react-loader-spinner";
+import { connect } from "react-redux";
+import { signUp } from "../../../actions/loginActions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-//import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +14,34 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { SignInFormStyles } from "./styles";
 
 class Register extends React.Component {
+  state = {
+    users: {
+      firstname: "",
+      lastname: "",
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      users: {
+        ...this.state.users,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  addNewUser = e => {
+    e.preventDefault();
+    this.props.signUp(this.state.users).then(res => {
+      if (res) {
+        this.props.history.push("/login");
+      }
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -27,7 +57,11 @@ class Register extends React.Component {
             <Typography component="h1" variant="h5">
               Sign Up!
             </Typography>
-            <form className={classes.form} noValidate>
+            <form
+              className={classes.form}
+              onSubmit={this.addNewUser}
+              noValidate
+            >
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -38,6 +72,8 @@ class Register extends React.Component {
                 name="firstname"
                 autoComplete="firstname"
                 autoFocus
+                value={this.state.users.firstname}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -49,6 +85,8 @@ class Register extends React.Component {
                 name="lastname"
                 autoComplete="lastname"
                 autoFocus
+                value={this.state.users.lastname}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -60,6 +98,8 @@ class Register extends React.Component {
                 name="username"
                 autoComplete="username"
                 autoFocus
+                value={this.state.users.username}
+                onChange={this.handleChange}
               />
               <TextField
                 variant="outlined"
@@ -71,6 +111,8 @@ class Register extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={this.state.users.password}
+                onChange={this.handleChange}
               />
               <Button
                 type="submit"
@@ -79,13 +121,22 @@ class Register extends React.Component {
                 color="primary"
                 className={classes.submit}
               >
-                Submit
+                {this.props.addingUsers ? (
+                  <Loader
+                    type="ThreeDots"
+                    color="#ffffff"
+                    height={12}
+                    width={26}
+                  />
+                ) : (
+                  "Signup"
+                )}
               </Button>
               <Grid container>
                 <Grid item>
                   <Button
                     onClick={() => this.props.history.push("/login")}
-                    color="success"
+                    color="default"
                   >
                     {"Already have an Account? Log in"}
                   </Button>
@@ -99,4 +150,13 @@ class Register extends React.Component {
   }
 }
 
-export default withStyles(SignInFormStyles)(Register);
+//import state from loginReducer from rootReducer
+const mapStateToProps = state => ({
+  error: state.login.error,
+  addingUsers: state.login.addingUsers
+});
+
+export default connect(
+  mapStateToProps,
+  { signUp }
+)(withStyles(SignInFormStyles)(Register));

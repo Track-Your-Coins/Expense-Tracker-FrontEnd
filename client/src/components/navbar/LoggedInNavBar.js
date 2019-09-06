@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -10,7 +11,9 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Button
+  //ButtonDropdown
 } from "reactstrap";
 
 class LoggedInNavBar extends React.Component {
@@ -23,6 +26,12 @@ class LoggedInNavBar extends React.Component {
       ...this.state.isOpen,
       isOpen: !this.state.isOpen
     });
+  };
+
+  logOut = e => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    this.props.history.push("/login");
   };
 
   render() {
@@ -39,10 +48,15 @@ class LoggedInNavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/login">Dashboard</NavLink>
+                <Button
+                  color="link"
+                  onClick={() => this.props.history.push("/dashboard")}
+                >
+                  Dashboard
+                </Button>
               </NavItem>
               <NavItem>
-                <NavLink>Logout</NavLink>
+                <Button color="link">Expenses</Button>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -50,9 +64,13 @@ class LoggedInNavBar extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>View Profile</DropdownItem>
+                  <DropdownItem>Edit Profile</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>Add New Expense</DropdownItem>
-                  <DropdownItem>Add New Income</DropdownItem>
+                  <DropdownItem>
+                    <Button color="danger" onClick={this.logOut}>
+                      Logout
+                    </Button>
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
             </Nav>
@@ -63,4 +81,4 @@ class LoggedInNavBar extends React.Component {
   }
 }
 
-export default LoggedInNavBar;
+export default withRouter(LoggedInNavBar);
