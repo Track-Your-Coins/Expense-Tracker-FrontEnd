@@ -15,6 +15,7 @@ import {
   Button
   //ButtonDropdown
 } from "reactstrap";
+import "./navbar.css"
 
 class LoggedInNavBar extends React.Component {
   state = {
@@ -43,7 +44,9 @@ class LoggedInNavBar extends React.Component {
           light
           expand="md"
         >
-          <NavbarBrand href="/">Track Your Coins</NavbarBrand>
+          <NavbarBrand onClick={() => this.props.history.push("/dashboard")}  id="navbarBrand">
+            Track Your Coins
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -66,10 +69,8 @@ class LoggedInNavBar extends React.Component {
                   <DropdownItem>View Profile</DropdownItem>
                   <DropdownItem>Edit Profile</DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem>
-                    <Button color="danger" onClick={this.logOut}>
+                  <DropdownItem className="logout-dropdown" onClick={this.logOut}>
                       Logout
-                    </Button>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

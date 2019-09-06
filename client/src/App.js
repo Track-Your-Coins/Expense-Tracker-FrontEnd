@@ -14,7 +14,9 @@ function App() {
 
   return (
     <div className="App">
-      {token ? <LoggedInNavBar /> : <NavBar />}
+    <div>
+        {token ? <LoggedInNavBar /> : <NavBar />}
+      </div>
       <div id="app-container">
         <Switch>
           <Route exact path="/" component={LandingPage} />
@@ -23,7 +25,9 @@ function App() {
           <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </div>
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

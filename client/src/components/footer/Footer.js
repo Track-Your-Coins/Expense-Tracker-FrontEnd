@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
+import "./footer.css";
 
 function Copyright() {
   return (
@@ -24,7 +25,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column"
   },
   footer: {
-    padding: theme.spacing(2),
+    bottom: 0,
+    width: "100%",
+    height: "40px",
     marginTop: "auto",
     backgroundColor: "white"
   }
@@ -36,7 +39,7 @@ const Footer = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <footer className={classes.footer}>
+      <footer id="footer-position" className={classes.footer}>
         <Container maxWidth="sm">
           <Copyright />
         </Container>

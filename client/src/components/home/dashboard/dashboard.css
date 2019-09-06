@@ -1,6 +1,6 @@
-/* #dashboard-container {
-  min-height: calc(100vh - 55px);
-} */
+#dashboard-container {
+  margin-top: 55px;
+}
 img {
   width: 70%;
   height: auto;
