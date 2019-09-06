@@ -11,11 +11,13 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Switch>
-        <Route path="/login" component={LoginForm} />
-        <Route path="/signup" component={Register} />
-        <Route path="/dashboard" component={Dashboard} />
-      </Switch>
+      <div id="app-container">
+        <Switch>
+          <Route path="/login" component={LoginForm} />
+          <Route path="/signup" component={Register} />
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
+      </div>
       <Footer />
     </div>
   );
