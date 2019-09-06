@@ -9,7 +9,8 @@ import {
 
 const initialState = {
   addingUsers: false,
-  error: ""
+  error: "",
+  loggingIn: false
 };
 
 export const loginReducer = (state = initialState, action) => {
@@ -18,19 +19,29 @@ export const loginReducer = (state = initialState, action) => {
       return {
         ...state,
         addingUsers: true,
-        error: ""
       };
     case SIGNUP_SUCCESS:
       return {
-        ...state,
-        addingUsers: false,
-        error: ""
+        ...state
       };
     case SIGNUP_FAILURE:
       return {
         ...state,
-        error: action.payload,
-        addingUsers: false
+        error: action.payload
+      };
+    case LOGIN_START:
+      return {
+        ...state,
+        loggingIn: true
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;

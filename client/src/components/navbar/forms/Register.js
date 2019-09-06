@@ -27,7 +27,7 @@ class Register extends React.Component {
     e.preventDefault();
     this.setState({
       users: {
-        ...this.state,
+        ...this.state.users,
         [e.target.name]: e.target.value
       }
     });
@@ -35,7 +35,7 @@ class Register extends React.Component {
 
   addNewUser = e => {
     e.preventDefault();
-    this.props.signUp(this.state).then(res => {
+    this.props.signUp(this.state.users).then(res => {
       if (res) {
         this.props.history.push("/login");
       }
@@ -72,7 +72,7 @@ class Register extends React.Component {
                 name="firstname"
                 autoComplete="firstname"
                 autoFocus
-                value={this.state.firstname}
+                value={this.state.users.firstname}
                 onChange={this.handleChange}
               />
               <TextField
@@ -85,7 +85,7 @@ class Register extends React.Component {
                 name="lastname"
                 autoComplete="lastname"
                 autoFocus
-                value={this.state.lastname}
+                value={this.state.users.lastname}
                 onChange={this.handleChange}
               />
               <TextField
@@ -98,7 +98,7 @@ class Register extends React.Component {
                 name="username"
                 autoComplete="username"
                 autoFocus
-                value={this.state.username}
+                value={this.state.users.username}
                 onChange={this.handleChange}
               />
               <TextField
@@ -111,7 +111,7 @@ class Register extends React.Component {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                value={this.state.password}
+                value={this.state.users.password}
                 onChange={this.handleChange}
               />
               <Button
@@ -122,7 +122,12 @@ class Register extends React.Component {
                 className={classes.submit}
               >
                 {this.props.addingUsers ? (
-                  <Loader type="Puff" color="#ffffff" height={12} width={26} />
+                  <Loader
+                    type="ThreeDots"
+                    color="#ffffff"
+                    height={12}
+                    width={26}
+                  />
                 ) : (
                   "Signup"
                 )}
