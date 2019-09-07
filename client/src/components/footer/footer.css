@@ -1,3 +1,9 @@
+/*
+This is causing the footer to be out of the regular flow of the doc
+#footer-position {
+    position: absolute;
+} */
+
 #footer-position {
     position: absolute;
 }
