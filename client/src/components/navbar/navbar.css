@@ -1,3 +1,7 @@
+.navbar {
+    width: 100%;
+}
+
 #navbarBrand {
     cursor: pointer;
 }

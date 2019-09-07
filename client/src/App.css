@@ -1,6 +1,11 @@
+/* .App {
+    background-color: blue;
+} */
+
+
 #app-container {
   /* These two paddings are causing a horizontal scrollbar on the bottom of the footer. */
-  padding: 10px;
-  padding-bottom: 60px;
+  /* padding: 10px;
+  padding-bottom: 60px; */
   text-align: center;
 }
