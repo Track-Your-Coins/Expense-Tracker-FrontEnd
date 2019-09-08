@@ -1,8 +1,10 @@
-.landing-page-div {
-    margin: 60px;
-}
+/* .landing-page-div {
+  margin: 60px;
+  /* background-image: url(../images/landingpagetwo.jpg);
+  height: 100vh;
+} */
 
 img {
-  width: 40%;
+  width: 50%;
   height: auto;
 }
