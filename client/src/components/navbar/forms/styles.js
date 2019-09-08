@@ -1,4 +1,4 @@
-import LoginPhoto from "../../images/login.png";
+import LoginPhoto from "../../images/logintwo.jpg";
 
 export const SignInFormStyles = {
   root: {

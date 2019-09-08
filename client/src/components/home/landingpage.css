@@ -4,7 +4,11 @@
   height: 100vh;
 } */
 
+.landing-page-div {
+  background-color: #ffffff;
+}
+
 img {
-  width: 50%;
+  width: 30%;
   height: auto;
 }

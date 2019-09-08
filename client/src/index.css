@@ -1,4 +1,9 @@
 html {
-    height: auto;
-    padding-top: 60px;
+  height: auto;
+  padding-top: 60px;
+  background-color: #ffffff;
+}
+
+body {
+  background-color: #ffffff;
 }
