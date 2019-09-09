@@ -1,6 +1,8 @@
 #dashboard-container {
   margin-top: 55px;
+  background-color: #ffffff;
 }
+
 img {
   width: 70%;
   height: auto;
