@@ -6,6 +6,7 @@ import logger from "redux-logger";
 import { createStore, applyMiddleware, compose } from "redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
+import Footer from "./components/footer/Footer";
 import rootReducer from "./reducers/rootReducer";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,13 +19,21 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, logger))
 );
 
-ReactDOM.render(
+const withFooter = WrappedComponent => () => [
+  <WrappedComponent key="1" />,
+  <Footer key="2" />
+];
+
+const Wrapper = () => (
   <Provider store={store}>
     <Router>
       <App />
     </Router>
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
+
+const WrapperWithFooter = withFooter(Wrapper);
+
+ReactDOM.render(<WrapperWithFooter />, document.getElementById("root"));
 
 //serviceWorker.unregister();
