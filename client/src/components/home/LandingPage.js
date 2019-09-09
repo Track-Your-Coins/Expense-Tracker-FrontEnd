@@ -2,11 +2,11 @@ import React from "react";
 import "./landingpage.css";
 
 const LandingPage = () => {
-  const Image = require("../images/moneytransfer.png");
+  const Image = require("../images/landingpagetwo.jpg");
   return (
     <div className="landing-page-div">
       <h1>Welcome to Track Your Coins</h1>
-        <img src={Image} alt="money transfer" />
+      <img src={Image} alt="money transfer" />
     </div>
   );
 };

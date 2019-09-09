@@ -1,4 +1,4 @@
-import LoginPhoto from "../../images/login.png";
+import LoginPhoto from "../../images/logintwo.jpg";
 
 export const SignInFormStyles = {
   root: {
@@ -11,7 +11,7 @@ export const SignInFormStyles = {
     backgroundPosition: "center"
   },
   paper: {
-    margin: "64px 32px",
+    margin: "20px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
