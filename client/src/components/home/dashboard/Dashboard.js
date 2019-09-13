@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -16,7 +17,7 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Income from "./Income";
@@ -116,7 +117,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
+const Dashboard = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -157,8 +158,8 @@ export default function Dashboard() {
             Dashboard
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
+            <Badge color="secondary">
+              <ExitToAppIcon />
             </Badge>
           </IconButton>
         </Toolbar>
@@ -208,4 +209,6 @@ export default function Dashboard() {
       </main>
     </div>
   );
-}
+};
+
+export default withRouter(Dashboard);
