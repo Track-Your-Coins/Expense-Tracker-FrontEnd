@@ -7,6 +7,7 @@ import LoginForm from "./components/navbar/forms/Login";
 import Register from "./components/navbar/forms/Register";
 import Dashboard from "./components/home/dashboard/Dashboard";
 import LandingPage from "./components/home/LandingPage";
+import AddExpenseForm from "./components/expenses/AddExpenseForm";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" component={LoginForm} />
           <Route path="/signup" component={Register} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/add-expense" component={AddExpenseForm} />
         </Switch>
       </div>
     </div>
