@@ -13,12 +13,45 @@ import {
   DELETE_EXPENSE_FAILURE
 } from "../actions/expenseActions";
 
-const initialState = {};
+const initialState = {
+  expenses: [],
+  error: "",
+  fetchingExpense: false,
+  addingExpense: false
+};
 
 export const expenseReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_EXPENSE_START:
+      return {
+        ...state,
+        addingExpense: true
+      };
+    case ADD_EXPENSE_SUCCESS:
+      return {
+        ...state,
+        expenses: action.payload
+      };
+    case ADD_EXPENSE_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     case FETCH_EXPENSE_START:
-      return {};
+      return {
+        ...state,
+        fetchingExpense: true
+      };
+    case FETCH_EXPENSE_SUCCESS:
+      return {
+        ...state,
+        expenses: action.payload
+      };
+    case FETCH_EXPENSE_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     default:
       return state;
   }
