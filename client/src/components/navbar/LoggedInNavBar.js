@@ -7,13 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Button
-  //ButtonDropdown
 } from "reactstrap";
 import "./navbar.css";
 
@@ -60,9 +54,6 @@ class LoggedInNavBar extends React.Component {
                 >
                   Dashboard
                 </Button>
-              </NavItem>
-              <NavItem>
-                <Button color="link">Expenses</Button>
               </NavItem>
               <NavItem>
                 <Button color="danger" onClick={this.logOut}>
