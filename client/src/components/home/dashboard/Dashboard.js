@@ -130,7 +130,7 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar
+      <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
@@ -162,7 +162,7 @@ export default function Dashboard() {
             </Badge>
           </IconButton>
         </Toolbar>
-      </AppBar> */}
+      </AppBar>
       <Drawer
         variant="permanent"
         classes={{
@@ -204,7 +204,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
         </Container>
-        <Copyright />
+        {/* <Copyright /> */}
       </main>
     </div>
   );
