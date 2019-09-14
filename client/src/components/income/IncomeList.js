@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import { fetchExpense } from "../../actions/expenseActions";
+import { withRouter } from "react-router";
+import { fetchIncome } from "../../actions/incomeActions";
 import LoggedInNavBar from "../navbar/LoggedInNavBar";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -15,49 +15,41 @@ const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    marginLeft: theme.spacing(4),
-    marginRight: theme.spacing(4),
-    padding: theme.spacing(2),
+    marginLeft: theme.spacing(8),
+    marginRight: theme.spacing(8),
+    padding: theme.spacing(8),
     display: "flex",
     overflow: "auto",
     flexDirection: "column"
   }
 }));
 
-const ExpenseList = props => {
-  console.log("Expense List Props:", props);
-  const { expenses } = props;
-  console.log(expenses);
+const IncomeList = props => {
+  const { income } = props;
   const classes = useStyles();
 
   useEffect(() => {
     const id = localStorage.getItem("user_id");
-    props.fetchExpense(id);
+    props.fetchIncome(id);
   });
 
   return (
     <div>
       <LoggedInNavBar />
       <Paper className={classes.paper}>
-        <h6>Expenses</h6>
+        <h6>Income</h6>
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell>Category</TableCell>
+              <TableCell>Payor</TableCell>
               <TableCell>Amount</TableCell>
-              <TableCell>Notes</TableCell>
-              <TableCell>Outstanding?</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {expenses.map(expense => (
-              <TableRow key={expense.id}>
-                <TableCell>{expense.date}</TableCell>
-                <TableCell>{expense.category}</TableCell>
-                <TableCell>{expense.amount}</TableCell>
-                <TableCell>{expense.notes}</TableCell>
-                <TableCell>{expense.paid ? "no" : "yes"}</TableCell>
+            {income.map(income => (
+              <TableRow key={income.id}>
+                <TableCell>{income.payor}</TableCell>
+                <TableCell>{income.amount}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -68,13 +60,14 @@ const ExpenseList = props => {
 };
 
 const mapStateToProps = state => ({
-  error: state.expense.error,
-  expenses: state.expense.expenses
+  error: state.income.error,
+  fetchingIncome: state.income.fetchingIncome,
+  income: state.income.income
 });
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { fetchExpense }
-  )(ExpenseList)
+    { fetchIncome }
+  )(IncomeList)
 );
