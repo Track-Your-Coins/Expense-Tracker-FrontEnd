@@ -19,6 +19,9 @@ const ExpenseTable = props => {
     props.fetchExpense(id);
   });
 
+  //add a btn that says view expense that opens up to a modal
+  //add delete & update btns
+
   return (
     <div>
       <h6>Expenses</h6>
@@ -29,7 +32,6 @@ const ExpenseTable = props => {
             <TableCell>Category</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Notes</TableCell>
-            <TableCell>Outstanding?</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -39,7 +41,6 @@ const ExpenseTable = props => {
               <TableCell>{expense.category}</TableCell>
               <TableCell>{expense.amount}</TableCell>
               <TableCell>{expense.notes}</TableCell>
-              <TableCell>{expense.paid ? "no" : "yes"}</TableCell>
             </TableRow>
           ))}
         </TableBody>

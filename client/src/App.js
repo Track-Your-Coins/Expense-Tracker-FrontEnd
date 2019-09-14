@@ -7,6 +7,8 @@ import Dashboard from "./components/home/dashboard/Dashboard";
 import LandingPage from "./components/home/LandingPage";
 import AddExpenseForm from "./components/expenses/AddExpenseForm";
 import ExpenseList from "./components/expenses/ExpenseList";
+import AddIncomeForm from "./components/income/AddIncomeForm";
+import IncomeList from "./components/income/IncomeList";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/add-expense" component={AddExpenseForm} />
           <Route path="/expenses" component={ExpenseList} />
+          <Route path="/add-income" component={AddIncomeForm} />
+          <Route path="/income" component={IncomeList} />
         </Switch>
       </div>
     </div>

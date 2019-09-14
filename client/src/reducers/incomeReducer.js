@@ -13,12 +13,45 @@ import {
   DELETE_INCOME_FAILURE
 } from "../actions/incomeActions";
 
-const initialState = {};
+const initialState = {
+  income: [],
+  error: "",
+  addingIncome: false,
+  fetchingIncome: false
+};
 
 export const incomeReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_INCOME_START:
+      return {
+        ...state,
+        addingIncome: true
+      };
+    case ADD_INCOME_SUCCESS:
+      return {
+        ...state,
+        income: action.payload
+      };
+    case ADD_INCOME_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     case FETCH_INCOME_START:
-      return {};
+      return {
+        ...state,
+        fetchingIncome: true
+      };
+    case FETCH_INCOME_SUCCESS:
+      return {
+        ...state,
+        income: action.payload
+      };
+    case FETCH_INCOME_FAILURE:
+      return {
+        ...state,
+        error: action.payload
+      };
     default:
       return state;
   }
