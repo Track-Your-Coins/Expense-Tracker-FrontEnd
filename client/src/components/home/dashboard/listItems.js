@@ -41,7 +41,7 @@ const logOut = e => {
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Update Budget</ListSubheader>
+    <ListSubheader inset>Update Your Expenses</ListSubheader>
     <ListItem button component={NavLink} to={"/add-expense"}>
       <ListItemIcon>
         <AttachMoneyIcon />
@@ -62,5 +62,3 @@ export const secondaryListItems = (
     </ListItem>
   </div>
 );
-
-
