@@ -64,7 +64,8 @@ const AddExpenseForm = props => {
     e.preventDefault();
     props.addExpense(input);
     if (props.expenses) {
-      props.history.push("/dashbaord");
+      console.log(props.expenses);
+      props.history.push("/dashbaord"); //need to figure out why routing to empty dashboard.
     } else {
       alert("There was an error adding that expense. Please try again.");
     }
