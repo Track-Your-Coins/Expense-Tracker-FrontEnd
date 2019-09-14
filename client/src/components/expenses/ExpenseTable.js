@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 const ExpenseTable = props => {
   console.log("Expense Table Props:", props);
   const { expenses } = props;
+  console.log(expenses);
 
   useEffect(() => {
     const id = localStorage.getItem("user_id");
@@ -28,7 +29,7 @@ const ExpenseTable = props => {
             <TableCell>Category</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Notes</TableCell>
-            <TableCell>Outstanding</TableCell>
+            <TableCell>Outstanding?</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -38,7 +39,7 @@ const ExpenseTable = props => {
               <TableCell>{expense.category}</TableCell>
               <TableCell>{expense.amount}</TableCell>
               <TableCell>{expense.notes}</TableCell>
-              <TableCell>{expense.paid}</TableCell>
+              <TableCell>{expense.paid ? "no" : "yes"}</TableCell>
             </TableRow>
           ))}
         </TableBody>
