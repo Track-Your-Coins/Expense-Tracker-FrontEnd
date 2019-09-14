@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { addExpense } from "../../actions/expenseActions";
 import LoggedInNavBar from "../navbar/LoggedInNavBar";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -64,7 +63,11 @@ const AddExpenseForm = props => {
   const addNewExpense = e => {
     e.preventDefault();
     props.addExpense(input);
-    props.history.push("/dashbaord"); //figure this out. rendering an empty dashboard upon successful add
+    if (props.expenses) {
+      props.history.push("/dashbaord");
+    } else {
+      alert("There was an error adding that expense. Please try again.");
+    }
   };
 
   return (
@@ -167,7 +170,7 @@ const AddExpenseForm = props => {
 const mapStateToProps = state => ({
   error: state.expense.error,
   addingExpense: state.expense.addingExpense,
-  users: state.login.users
+  expenses: state.expense.expenses
 });
 
 export default connect(

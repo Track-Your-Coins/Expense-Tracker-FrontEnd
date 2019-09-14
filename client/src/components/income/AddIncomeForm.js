@@ -1,10 +1,9 @@
 // import React, { useState } from "react";
 // import Loader from "react-loader-spinner";
 // import { connect } from "react-redux";
-// import { addExpense } from "../../actions/expenseActions";
+// import { addIncome } from "../../actions/incomeActions";
 // import LoggedInNavBar from "../navbar/LoggedInNavBar";
 // import { makeStyles } from "@material-ui/core/styles";
-// import CssBaseline from "@material-ui/core/CssBaseline";
 // import Paper from "@material-ui/core/Paper";
 // import Button from "@material-ui/core/Button";
 // import Grid from "@material-ui/core/Grid";
@@ -40,8 +39,32 @@
 //   }
 // }));
 
-// const AddExpenseForm = () => {
+// const AddIncomeForm = props => {
+//   console.log(props);
 //   const classes = useStyles();
+//   const [input, setInput] = useState({
+//     user_id: localStorage.getItem("user_id"),
+//     date: "",
+//     category: "",
+//     amount: 0,
+//     notes: "",
+//     paid: false
+//   });
+//   console.log(input);
+
+//   const handleChange = e => {
+//     e.persist();
+//     setInput(input => ({
+//       ...input,
+//       [e.target.name]: e.target.value
+//     }));
+//   };
+
+//   const addNewIncome = e => {
+//     e.preventDefault();
+//     props.addIncome(input);
+//     props.history.push("/dashbaord"); //figure this out. rendering an empty dashboard upon successful add
+//   };
 
 //   return (
 //     <div>
@@ -52,62 +75,87 @@
 //             <Typography variant="h6" gutterBottom>
 //               Add New Expense
 //             </Typography>
-//             <Grid container spacing={3}>
-//               <Grid item xs={12}>
-//                 <TextField
-//                   required
-//                   id="date"
-//                   name="date"
-//                   label="Date"
-//                   fullWidth
-//                 />
+//             <form onSubmit={addNewExpense}>
+//               <Grid container spacing={3}>
+//                 <Grid item xs={12}>
+//                   <TextField
+//                     required
+//                     fullWidth
+//                     id="date"
+//                     name="date"
+//                     type="date"
+//                     value={input.date}
+//                     onChange={handleChange}
+//                   />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                   <TextField
+//                     required
+//                     fullWidth
+//                     id="category"
+//                     name="category"
+//                     label="Category"
+//                     value={input.category}
+//                     onChange={handleChange}
+//                   />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                   <TextField
+//                     required
+//                     fullWidth
+//                     id="amount"
+//                     name="amount"
+//                     label="Amount"
+//                     value={input.amount}
+//                     onChange={handleChange}
+//                   />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                   <TextField
+//                     required
+//                     fullWidth
+//                     id="notes"
+//                     name="notes"
+//                     label="notes"
+//                     value={input.notes}
+//                     onChange={handleChange}
+//                   />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                   <FormControlLabel
+//                     control={
+//                       <Checkbox
+//                         color="secondary"
+//                         name="paid"
+//                         value={!input.paid}
+//                         onChange={handleChange}
+//                       />
+//                     }
+//                     label="check if paid"
+//                   />
+//                 </Grid>
+//                 <Grid item xs={12}>
+//                   <Button
+//                     fullWidth
+//                     variant="contained"
+//                     color="primary"
+//                     className={classes.button}
+//                     type="submit"
+//                   >
+//                     {props.addingExpense ? (
+//                       <Loader
+//                         type="ThreeDots"
+//                         color="#ffffff"
+//                         height={12}
+//                         width={26}
+//                       />
+//                     ) : (
+//                       "Add Income"
+//                     )}
+//                   </Button>
+//                 </Grid>
 //               </Grid>
-//               <Grid item xs={12}>
-//                 <TextField
-//                   required
-//                   id="category"
-//                   name="category"
-//                   label="Category"
-//                   fullWidth
-//                 />
-//               </Grid>
-//               <Grid item xs={12}>
-//                 <TextField
-//                   required
-//                   id="amount"
-//                   name="amount"
-//                   label="Amount"
-//                   fullWidth
-//                 />
-//               </Grid>
-//               <Grid item xs={12}>
-//                 <TextField
-//                   required
-//                   id="notes"
-//                   name="notes"
-//                   label="notes"
-//                   fullWidth
-//                 />
-//               </Grid>
-//               <Grid item xs={12}>
-//                 <FormControlLabel
-//                   control={
-//                     <Checkbox color="secondary" name="paid" value="yes" />
-//                   }
-//                   label="check if paid"
-//                 />
-//               </Grid>
-//               <Grid item xs={12}>
-//                 <Button
-//                   fullWidth
-//                   variant="contained"
-//                   color="primary"
-//                   className={classes.button}
-//                 >
-//                   Add Expense
-//                 </Button>
-//               </Grid>
-//             </Grid>
+//             </form>
 //           </Paper>
 //         </main>
 //       </div>
@@ -116,11 +164,12 @@
 // };
 
 // const mapStateToProps = state => ({
-//   error: state.expense.error,
-//   addingExpense: state.expense.addingExpense
+//   error: state.income.error,
+//   addingIncome: state.income.addingIncome,
+//    income: state.income.income
 // });
 
 // export default connect(
 //   mapStateToProps,
-//   { addExpense }
-// )(AddExpenseForm);
+//   { addIncome }
+// )(AddIncomeForm);
