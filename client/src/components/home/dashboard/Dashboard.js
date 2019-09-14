@@ -20,7 +20,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
-import Income from "./Income";
+import Income from "../../income/Income";
 import ExpenseTable from "../../expenses/ExpenseTable";
 
 function Copyright() {
