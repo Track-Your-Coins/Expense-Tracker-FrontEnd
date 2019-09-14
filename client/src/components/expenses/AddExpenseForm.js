@@ -44,6 +44,7 @@ const AddExpenseForm = props => {
   console.log(props);
   const classes = useStyles();
   const [input, setInput] = useState({
+    user_id: localStorage.getItem("user_id"),
     date: "",
     category: "",
     amount: 0,
@@ -53,7 +54,7 @@ const AddExpenseForm = props => {
   console.log(input);
 
   const handleChange = e => {
-    e.preventDefault();
+    e.persist();
     setInput(input => ({
       ...input,
       [e.target.name]: e.target.value
@@ -168,7 +169,8 @@ const AddExpenseForm = props => {
 
 const mapStateToProps = state => ({
   error: state.expense.error,
-  addingExpense: state.expense.addingExpense
+  addingExpense: state.expense.addingExpense,
+  users: state.login.users
 });
 
 export default connect(
