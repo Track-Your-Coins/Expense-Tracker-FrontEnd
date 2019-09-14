@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import { addExpense } from "../../actions/expenseActions";
@@ -174,7 +175,9 @@ const mapStateToProps = state => ({
   expenses: state.expense.expenses
 });
 
-export default connect(
-  mapStateToProps,
-  { addExpense }
-)(AddExpenseForm);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { addExpense }
+  )(AddExpenseForm)
+);

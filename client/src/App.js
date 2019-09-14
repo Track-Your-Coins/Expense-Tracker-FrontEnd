@@ -6,6 +6,7 @@ import Register from "./components/navbar/forms/Register";
 import Dashboard from "./components/home/dashboard/Dashboard";
 import LandingPage from "./components/home/LandingPage";
 import AddExpenseForm from "./components/expenses/AddExpenseForm";
+import ExpenseTable from "./components/expenses/ExpenseTable";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signup" component={Register} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/add-expense" component={AddExpenseForm} />
+          <Route path="/expenses" component={ExpenseTable} />
         </Switch>
       </div>
     </div>
