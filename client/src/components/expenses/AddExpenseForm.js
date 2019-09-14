@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import { KeyboardDatePicker } from "@material-ui/pickers";
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -40,8 +41,32 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AddExpenseForm = () => {
+const AddExpenseForm = props => {
   const classes = useStyles();
+  const [input, setInput] = useState({
+    date: "",
+    category: "",
+    amount: 0,
+    notes: "",
+    paid: false
+  });
+
+  const handleChange = e => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const addNewExpense = e => {
+    e.preventDefault();
+    props.addExpense(input).then(res => {
+      if (res) {
+        props.history.push("/dashbaord");
+      }
+    });
+  };
 
   return (
     <div>
@@ -54,13 +79,27 @@ const AddExpenseForm = () => {
             </Typography>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <TextField
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="MM/dd/yyyy"
+                  margin="normal"
+                  id="date-picker-inline"
+                  label="Date picker inline"
+                  // value={}
+                  // onChange={}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date"
+                  }}
+                />
+                {/* <TextField
                   required
+                  fullWidth
                   id="date"
                   name="date"
-                  label="Date"
-                  fullWidth
-                />
+                  // label="Date"
+                  type="date"
+                /> */}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -104,7 +143,16 @@ const AddExpenseForm = () => {
                   color="primary"
                   className={classes.button}
                 >
-                  Add Expense
+                  {props.addingExpense ? (
+                    <Loader
+                      type="ThreeDots"
+                      color="#ffffff"
+                      height={12}
+                      width={26}
+                    />
+                  ) : (
+                    "Add Expense"
+                  )}
                 </Button>
               </Grid>
             </Grid>
