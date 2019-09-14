@@ -33,6 +33,9 @@ const IncomeList = props => {
     props.fetchIncome(id);
   });
 
+  // const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
+  // console.log("TOTAL INCOME", totalIncome);
+
   return (
     <div>
       <LoggedInNavBar />
