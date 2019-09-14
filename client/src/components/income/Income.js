@@ -16,15 +16,16 @@ const Income = props => {
   const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
 
   //function to calculate total expenses
-  //const totalExpenses = expenses.reduce((acc, ex) => acc + ex.amount, 0);
+  let totalExpenses = expenses.reduce((acc, ex) => acc + ex.amount, 0);
+  const roundedExpenses = Math.round(totalExpenses); //getting NaN
 
   return (
     <div>
       <h6>Total Income</h6>
       <h2> {totalIncome} </h2>
-      {/* <br />
+      <br />
       <h6>Total Expenses</h6>
-      <h2> {totalExpenses} </h2> */}
+      <h2> {roundedExpenses} </h2>
     </div>
   );
 };
