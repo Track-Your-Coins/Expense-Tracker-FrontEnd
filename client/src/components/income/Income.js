@@ -16,14 +16,20 @@ const Income = props => {
   return (
     <div>
       <h6>Total Income</h6>
-      {income.map(item => (
-        <>
-          <Typography key={item.id} component="p" variant="h4">
-            {item.amount}
-          </Typography>
-          <Typography color="textSecondary">{item.payor}</Typography>
-        </>
-      ))}
+      {income.map(item => {
+        if (item) {
+          return (
+            <>
+              <Typography key={item.id} component="p" variant="h4">
+                {item.amount}
+              </Typography>
+              <Typography color="textSecondary">{item.payor}</Typography>
+            </>
+          );
+        } else {
+          return null;
+        }
+      })}
     </div>
   );
 };
