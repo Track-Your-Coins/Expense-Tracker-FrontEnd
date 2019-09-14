@@ -12,7 +12,6 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { KeyboardDatePicker } from "@material-ui/pickers";
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -42,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddExpenseForm = props => {
+  console.log(props);
   const classes = useStyles();
   const [input, setInput] = useState({
     date: "",
@@ -50,13 +50,14 @@ const AddExpenseForm = props => {
     notes: "",
     paid: false
   });
+  console.log(input);
 
   const handleChange = e => {
     e.preventDefault();
-    setInput({
+    setInput(input => ({
       ...input,
       [e.target.name]: e.target.value
-    });
+    }));
   };
 
   const addNewExpense = e => {
@@ -77,85 +78,87 @@ const AddExpenseForm = props => {
             <Typography variant="h6" gutterBottom>
               Add New Expense
             </Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  format="MM/dd/yyyy"
-                  margin="normal"
-                  id="date-picker-inline"
-                  label="Date picker inline"
-                  // value={}
-                  // onChange={}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date"
-                  }}
-                />
-                {/* <TextField
-                  required
-                  fullWidth
-                  id="date"
-                  name="date"
-                  // label="Date"
-                  type="date"
-                /> */}
+            <form onSubmit={addNewExpense}>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="date"
+                    name="date"
+                    type="date"
+                    value={input.date}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="category"
+                    name="category"
+                    label="Category"
+                    value={input.category}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="amount"
+                    name="amount"
+                    label="Amount"
+                    value={input.amount}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="notes"
+                    name="notes"
+                    label="notes"
+                    value={input.notes}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="secondary"
+                        name="paid"
+                        value={!input.paid}
+                        onChange={handleChange}
+                      />
+                    }
+                    label="check if paid"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    type="submit"
+                  >
+                    {props.addingExpense ? (
+                      <Loader
+                        type="ThreeDots"
+                        color="#ffffff"
+                        height={12}
+                        width={26}
+                      />
+                    ) : (
+                      "Add Expense"
+                    )}
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  id="category"
-                  name="category"
-                  label="Category"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  id="amount"
-                  name="amount"
-                  label="Amount"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  id="notes"
-                  name="notes"
-                  label="notes"
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox color="secondary" name="paid" value="yes" />
-                  }
-                  label="check if paid"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                >
-                  {props.addingExpense ? (
-                    <Loader
-                      type="ThreeDots"
-                      color="#ffffff"
-                      height={12}
-                      width={26}
-                    />
-                  ) : (
-                    "Add Expense"
-                  )}
-                </Button>
-              </Grid>
-            </Grid>
+            </form>
           </Paper>
         </main>
       </div>
