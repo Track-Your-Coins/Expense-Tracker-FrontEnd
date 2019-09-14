@@ -26,6 +26,7 @@ class LoggedInNavBar extends React.Component {
   logOut = e => {
     e.preventDefault();
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
     this.props.history.push("/login");
   };
 

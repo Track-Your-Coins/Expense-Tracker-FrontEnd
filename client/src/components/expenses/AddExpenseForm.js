@@ -63,11 +63,8 @@ const AddExpenseForm = props => {
 
   const addNewExpense = e => {
     e.preventDefault();
-    props.addExpense(input).then(res => {
-      if (res) {
-        props.history.push("/dashbaord");
-      }
-    });
+    props.addExpense(input);
+    props.history.push("/dashbaord"); //figure this out. rendering an empty dashboard upon successful add
   };
 
   return (
