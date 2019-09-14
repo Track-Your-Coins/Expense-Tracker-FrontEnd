@@ -1,70 +1,66 @@
 import React from "react";
+import { NavLink, Redirect, withRouter } from "react-router-dom";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button component={NavLink} to={"/dashboard"}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={NavLink} to={"/expenses"}>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <AttachMoneyIcon />
       </ListItemIcon>
-      <ListItemText primary="Orders" />
+      <ListItemText primary="View Expenses" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={NavLink} to={"/income"}>
       <ListItemIcon>
-        <PeopleIcon />
+        <AccountBalanceWalletIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="View Income" />
     </ListItem>
   </div>
 );
 
+//need to redirect to login page
+const logOut = e => {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  // props.history.push("/login");
+};
+
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
+    <ListSubheader inset>Update Budget</ListSubheader>
+    <ListItem button component={NavLink} to={"/add-expense"}>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AttachMoneyIcon />
       </ListItemIcon>
-      <ListItemText primary="Current month" />
+      <ListItemText primary="Add Expense" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={NavLink} to={"/add-income"}>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AccountBalanceWalletIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
+      <ListItemText primary="Add Income" />
     </ListItem>
-    <ListItem button>
+    <ListItem button onClick={logOut}>
       <ListItemIcon>
-        <AssignmentIcon />
+        <ExitToAppIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
+      <ListItemText primary="Logout" />
     </ListItem>
   </div>
 );
+
+
