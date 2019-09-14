@@ -7,15 +7,9 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Button
-  //ButtonDropdown
 } from "reactstrap";
-import "./navbar.css"
+import "./navbar.css";
 
 class LoggedInNavBar extends React.Component {
   state = {
@@ -32,6 +26,7 @@ class LoggedInNavBar extends React.Component {
   logOut = e => {
     e.preventDefault();
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
     this.props.history.push("/login");
   };
 
@@ -44,7 +39,10 @@ class LoggedInNavBar extends React.Component {
           light
           expand="md"
         >
-          <NavbarBrand onClick={() => this.props.history.push("/dashboard")}  id="navbarBrand">
+          <NavbarBrand
+            onClick={() => this.props.history.push("/dashboard")}
+            id="navbarBrand"
+          >
             Track Your Coins
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
@@ -59,21 +57,10 @@ class LoggedInNavBar extends React.Component {
                 </Button>
               </NavItem>
               <NavItem>
-                <Button color="link">Expenses</Button>
+                <Button color="danger" onClick={this.logOut}>
+                  Logout
+                </Button>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Profile
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>View Profile</DropdownItem>
-                  <DropdownItem>Edit Profile</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem className="logout-dropdown" onClick={this.logOut}>
-                      Logout
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>

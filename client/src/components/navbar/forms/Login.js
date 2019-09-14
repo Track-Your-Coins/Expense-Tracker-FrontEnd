@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { SignInFormStyles } from "./styles";
+import NavBar from "../NavBar";
 import "./login.css";
 
 class Login extends React.Component {
@@ -45,6 +46,8 @@ class Login extends React.Component {
     const { classes } = this.props;
 
     return (
+      <div>
+        <NavBar />
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -119,6 +122,7 @@ class Login extends React.Component {
           </div>
         </Grid>
       </Grid>
+      </div>
     );
   }
 }
