@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
+import Button from '@material-ui/core/Button';
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
@@ -117,7 +118,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -127,6 +128,13 @@ const Dashboard = () => {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+const logOut = e => {
+  e.preventDefault();
+  localStorage.removeItem("token");
+  localStorage.removeItem("user_id");
+  props.history.push("/login");
+};
 
   return (
     <div className={classes.root}>
@@ -157,11 +165,7 @@ const Dashboard = () => {
           >
             Dashboard
           </Typography>
-          <IconButton color="inherit">
-            <Badge color="secondary">
-              <ExitToAppIcon />
-            </Badge>
-          </IconButton>
+          <Button color="secondary" variant="contained" onClick={logOut}>Logout</Button>
         </Toolbar>
       </AppBar>
       <Drawer
