@@ -21,7 +21,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "./Chart";
 import Income from "./Income";
-import Expenses from "./Expenses";
+import ExpenseTable from "../../expenses/ExpenseTable";
 
 function Copyright() {
   return (
@@ -191,16 +191,16 @@ const Dashboard = () => {
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
+            {/* Income */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <Income />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
+            {/* Expenses */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Expenses />
+                <ExpenseTable />
               </Paper>
             </Grid>
           </Grid>
