@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   button: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
     marginLeft: theme.spacing(1)
   }
 }));
@@ -56,71 +56,50 @@ const AddExpenseForm = () => {
               <Grid item xs={12}>
                 <TextField
                   required
+                  id="date"
+                  name="date"
+                  label="Date"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
                   id="category"
                   name="category"
-                  label="Expense Category"
+                  label="Category"
                   fullWidth
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
-                  id="address1"
-                  name="address1"
-                  label="Address line 1"
+                  id="amount"
+                  name="amount"
+                  label="Amount"
                   fullWidth
-                  autoComplete="billing address-line1"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  id="address2"
-                  name="address2"
-                  label="Address line 2"
-                  fullWidth
-                  autoComplete="billing address-line2"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
                   required
-                  id="city"
-                  name="city"
-                  label="City"
-                  fullWidth
-                  autoComplete="billing address-level2"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  id="state"
-                  name="state"
-                  label="State/Province/Region"
+                  id="notes"
+                  name="notes"
+                  label="notes"
                   fullWidth
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="zip"
-                  name="zip"
-                  label="Zip / Postal code"
-                  fullWidth
-                  autoComplete="billing postal-code"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  id="country"
-                  name="country"
-                  label="Country"
-                  fullWidth
-                  autoComplete="billing country"
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox color="secondary" name="paid" value="yes" />
+                  }
+                  label="check if paid"
                 />
               </Grid>
               <Grid item xs={12}>
                 <Button
+                  fullWidth
                   variant="contained"
                   color="primary"
                   className={classes.button}
