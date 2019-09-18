@@ -35,14 +35,20 @@ const ExpenseTable = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {expenses.map(expense => (
-            <TableRow key={expense.id}>
-              <TableCell>{expense.date}</TableCell>
-              <TableCell>{expense.category}</TableCell>
-              <TableCell>{expense.amount}</TableCell>
-              <TableCell>{expense.notes}</TableCell>
-            </TableRow>
-          ))}
+          {expenses.map(expense => {
+            if (expense) {
+              return (
+                <TableRow key={expense.id}>
+                  <TableCell>{expense.date}</TableCell>
+                  <TableCell>{expense.category}</TableCell>
+                  <TableCell>{expense.amount}</TableCell>
+                  <TableCell>{expense.notes}</TableCell>
+                </TableRow>
+              );
+            } else {
+              return null;
+            }
+          })}
         </TableBody>
       </Table>
     </div>

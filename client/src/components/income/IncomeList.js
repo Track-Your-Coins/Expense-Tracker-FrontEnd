@@ -33,6 +33,9 @@ const IncomeList = props => {
     props.fetchIncome(id);
   });
 
+  // const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
+  // console.log("TOTAL INCOME", totalIncome);
+
   return (
     <div>
       <LoggedInNavBar />
@@ -46,12 +49,18 @@ const IncomeList = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {income.map(income => (
-              <TableRow key={income.id}>
-                <TableCell>{income.payor}</TableCell>
-                <TableCell>{income.amount}</TableCell>
-              </TableRow>
-            ))}
+            {income.map(income => {
+              if (income) {
+                return (
+                  <TableRow key={income.id}>
+                    <TableCell>{income.payor}</TableCell>
+                    <TableCell>{income.amount}</TableCell>
+                  </TableRow>
+                );
+              } else {
+                return null;
+              }
+            })}
           </TableBody>
         </Table>
       </Paper>
