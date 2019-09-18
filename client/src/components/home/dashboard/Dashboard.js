@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,6 +24,7 @@ import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "../../expenses/Chart";
 import Income from "../../income/Income";
 import ExpenseTable from "../../expenses/ExpenseTable";
+
 
 function Copyright() {
   return (
@@ -100,7 +102,7 @@ const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: "100vh",
+    height: "90vh",
     overflow: "auto"
   },
   container: {
@@ -118,9 +120,33 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+let userID = localStorage.getItem("user_id")
+
 const Dashboard = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+
+  const [expense, setExpense] = useState({
+      user_id: userID,
+    date: "",
+    category: "",
+    amount: 0,
+    notes: "",
+    paid: false
+  })
+
+//listener for expense change
+    useEffect(() => {
+        setExpense ({
+            user_id: userID,
+            date: props.expenses.date,
+            category: props.expenses.category,
+            amount: props.expenses.amount,
+            notes: props.expenses.notes,
+            paid: props.expenses.paid
+        })
+    }, [props.expenses])
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -215,4 +241,14 @@ const logOut = e => {
   );
 };
 
-export default withRouter(Dashboard);
+const mapStateToProps = state => ({
+  error: state.income.error,
+  income: state.income.income,
+  expenses: state.expense.expenses
+});
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+  )(Dashboard)
+);

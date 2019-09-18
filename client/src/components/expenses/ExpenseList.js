@@ -33,7 +33,7 @@ const ExpenseList = props => {
   useEffect(() => {
     const id = localStorage.getItem("user_id");
     props.fetchExpense(id);
-  });
+  }, expenses);
 
   return (
     <div>
@@ -51,8 +51,8 @@ const ExpenseList = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {expenses.map(expense => {
-              if (expense) {
+          { expenses ?
+            expenses.map(expense => {
                 return (
                   <TableRow key={expense.id}>
                     <TableCell>{expense.date}</TableCell>
@@ -61,11 +61,9 @@ const ExpenseList = props => {
                     <TableCell>{expense.notes}</TableCell>
                     <TableCell>{expense.paid ? "no" : "yes"}</TableCell>
                   </TableRow>
-                );
-              } else {
-                return null;
-              }
-            })}
+                )
+            }) : null
+             }
           </TableBody>
         </Table>
       </Paper>

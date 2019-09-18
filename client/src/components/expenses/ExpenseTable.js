@@ -17,7 +17,7 @@ const ExpenseTable = props => {
   useEffect(() => {
     const id = localStorage.getItem("user_id");
     props.fetchExpense(id);
-  });
+  }, []);
 
   //add a btn that says view expense that opens up to a modal
   //add delete & update btns
@@ -35,20 +35,19 @@ const ExpenseTable = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {expenses.map(expense => {
-            if (expense) {
-              return (
-                <TableRow key={expense.id}>
-                  <TableCell>{expense.date}</TableCell>
-                  <TableCell>{expense.category}</TableCell>
-                  <TableCell>{expense.amount}</TableCell>
-                  <TableCell>{expense.notes}</TableCell>
-                </TableRow>
-              );
-            } else {
-              return null;
-            }
-          })}
+        {console.log("EXPENSESTABLE", expenses)}
+          { expenses ?
+            expenses.map(expense => {
+                return (
+                  <TableRow key={expense.id}>
+                    <TableCell>{expense.date}</TableCell>
+                    <TableCell>{expense.category}</TableCell>
+                    <TableCell>{expense.amount}</TableCell>
+                    <TableCell>{expense.notes}</TableCell>
+                  </TableRow>
+                )
+            }) : null
+             }
         </TableBody>
       </Table>
     </div>
