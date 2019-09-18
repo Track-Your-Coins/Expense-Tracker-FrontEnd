@@ -5,33 +5,35 @@ import { fetchIncome } from "../../actions/incomeActions";
 import Typography from "@material-ui/core/Typography";
 
 const Income = props => {
-  const { income } = props;
+  const { income, expenses, error } = props;
 
   useEffect(() => {
     const id = localStorage.getItem("user_id");
     props.fetchIncome(id);
   });
 
-  //calculate total income here and render to screen
+  //function to calculate total income
+  const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
+
+  //function to calculate total expenses
+  let totalExpenses = expenses.reduce((acc, ex) => acc + ex.amount, 0);
+  const roundedExpenses = Math.round(totalExpenses); //getting NaN
+
   return (
     <div>
       <h6>Total Income</h6>
-      {income.map(item => (
-        <>
-          <Typography key={item.id} component="p" variant="h4">
-            {item.amount}
-          </Typography>
-          <Typography color="textSecondary">{item.payor}</Typography>
-        </>
-      ))}
+      <h2> {totalIncome} </h2>
+      <br />
+      <h6>Total Expenses</h6>
+      <h2> {roundedExpenses} </h2>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   error: state.income.error,
-  fetchingIncome: state.income.fetchingIncome,
-  income: state.income.income
+  income: state.income.income,
+  expenses: state.expense.expenses
 });
 
 export default withRouter(

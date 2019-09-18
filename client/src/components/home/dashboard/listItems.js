@@ -7,7 +7,8 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 export const mainListItems = (
   <div>
@@ -32,33 +33,20 @@ export const mainListItems = (
   </div>
 );
 
-//need to redirect to login page
-const logOut = e => {
-  e.preventDefault();
-  localStorage.removeItem("token");
-  // props.history.push("/login");
-};
-
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Update Your Expenses</ListSubheader>
+    <ListSubheader>Expense & Income Updates</ListSubheader>
     <ListItem button component={NavLink} to={"/add-expense"}>
       <ListItemIcon>
-        <AttachMoneyIcon />
+        <AddCircleOutlineIcon />
       </ListItemIcon>
       <ListItemText primary="Add Expense" />
     </ListItem>
     <ListItem button component={NavLink} to={"/add-income"}>
       <ListItemIcon>
-        <AccountBalanceWalletIcon />
+        <AddCircleIcon />
       </ListItemIcon>
       <ListItemText primary="Add Income" />
-    </ListItem>
-    <ListItem button onClick={logOut}>
-      <ListItemIcon>
-        <ExitToAppIcon />
-      </ListItemIcon>
-      <ListItemText primary="Logout" />
     </ListItem>
   </div>
 );
