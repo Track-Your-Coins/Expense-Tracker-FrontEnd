@@ -19,6 +19,7 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "../../expenses/Chart";
@@ -126,32 +127,12 @@ const Dashboard = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
-  const [expense, setExpense] = useState({
-      user_id: userID,
-    date: "",
-    category: "",
-    amount: 0,
-    notes: "",
-    paid: false
-  })
-
-//listener for expense change
-    useEffect(() => {
-        setExpense ({
-            user_id: userID,
-            date: props.expenses.date,
-            category: props.expenses.category,
-            amount: props.expenses.amount,
-            notes: props.expenses.notes,
-            paid: props.expenses.paid
-        })
-    }, [props.expenses])
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
+    setOpen(!open)
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -203,7 +184,7 @@ const logOut = e => {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
+            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
@@ -241,14 +222,4 @@ const logOut = e => {
   );
 };
 
-const mapStateToProps = state => ({
-  error: state.income.error,
-  income: state.income.income,
-  expenses: state.expense.expenses
-});
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-  )(Dashboard)
-);
+export default withRouter(Dashboard)

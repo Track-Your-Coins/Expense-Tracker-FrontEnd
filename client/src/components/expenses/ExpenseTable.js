@@ -8,6 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
+import { async } from "q";
 
 const ExpenseTable = props => {
   console.log("Expense Table Props:", props);
@@ -15,9 +16,13 @@ const ExpenseTable = props => {
   console.log(expenses);
 
   useEffect(() => {
-    const id = localStorage.getItem("user_id");
-    props.fetchExpense(id);
+    getExpenses()
   }, []);
+
+  const getExpenses = async () => {
+      const id = localStorage.getItem("user_id");
+       const allExpenses = await props.fetchExpense(id)
+  }
 
   //add a btn that says view expense that opens up to a modal
   //add delete & update btns

@@ -7,50 +7,33 @@ import Typography from "@material-ui/core/Typography";
 const Income = props => {
   const { income, expenses, error } = props;
 
-    const [expense, setExpense] = useState({
-        user_id: localStorage.getItem("user_id"),
-        date: "",
-        category: "",
-        amount: 0,
-        notes: "",
-        paid: false
-    })
-
     useEffect(() => {
         const id = localStorage.getItem("user_id");
         props.fetchIncome(id);
     },[]);
 
-    //listener for when expenses change
-    useEffect(() => {
-        setExpense ({
-            user_id: localStorage.getItem("user_id"),
-            date: expenses.date,
-            category: expenses.category,
-            amount: expenses.amount,
-            notes: expenses.notes,
-            paid: expenses.paid
-        })
-    }, [expenses])
-
   //total income
   const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
 
   //total expenses
-  const Num = [];
+      const Num = [];
   let expenseAmount = expenses.forEach(num => {
       Num.push(Number(num.amount))
   })
   let reducedExpenses = Num.reduce((acc, ex) => acc + ex, 0);
     const totalExpenses = Math.round(reducedExpenses)
 
+    //remiander
+    const remainder = totalIncome - totalExpenses
+
   return (
     <div>
       <h6>Total Income</h6>
-      <h2> ${totalIncome} </h2>
-      <br />
+      <h5> ${totalIncome} </h5>
       <h6>Total Expenses</h6>
-      <h2> ${totalExpenses} </h2>
+      <h5> ${totalExpenses} </h5>
+      <h6>Remaining</h6>
+      <h5> ${remainder} </h5>
     </div>
   );
 };
