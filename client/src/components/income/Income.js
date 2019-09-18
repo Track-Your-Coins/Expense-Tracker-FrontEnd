@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 
 const Income = props => {
   const { income, expenses, error } = props;
+  console.log("EXPENSES", expenses)
+  console.log("INCOME", income)
 
   useEffect(() => {
     const id = localStorage.getItem("user_id");
@@ -16,8 +18,11 @@ const Income = props => {
   const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
 
   //function to calculate total expenses
-  let totalExpenses = expenses.reduce((acc, ex) => acc + ex.amount, 0);
-  const roundedExpenses = Math.round(totalExpenses); //getting NaN
+  const Num = [];
+  let numArr = expenses.forEach(num => {
+      Num.push(Number(num.amount))
+  })
+  let totalExpenses = Num.reduce((acc, ex) => acc + ex, 0);
 
   return (
     <div>
@@ -25,7 +30,7 @@ const Income = props => {
       <h2> {totalIncome} </h2>
       <br />
       <h6>Total Expenses</h6>
-      <h2> {roundedExpenses} </h2>
+      <h2> {totalExpenses} </h2>
     </div>
   );
 };
