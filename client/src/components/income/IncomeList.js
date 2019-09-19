@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(8),
     display: "flex",
     overflow: "auto",
-    flexDirection: "column"
+    flexDirection: "column",
+    height: "80vh"
   }
 }));
 
@@ -31,10 +32,7 @@ const IncomeList = props => {
   useEffect(() => {
     const id = localStorage.getItem("user_id");
     props.fetchIncome(id);
-  });
-
-  // const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
-  // console.log("TOTAL INCOME", totalIncome);
+  }, []);
 
   return (
     <div>

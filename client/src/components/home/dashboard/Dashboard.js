@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,11 +19,13 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Chart from "../../expenses/Chart";
 import Income from "../../income/Income";
 import ExpenseTable from "../../expenses/ExpenseTable";
+
 
 function Copyright() {
   return (
@@ -100,7 +103,7 @@ const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: "100vh",
+    height: "90vh",
     overflow: "auto"
   },
   container: {
@@ -118,14 +121,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+let userID = localStorage.getItem("user_id")
+
 const Dashboard = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
+    setOpen(!open)
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -177,7 +184,7 @@ const logOut = e => {
       >
         <div className={classes.toolbarIcon}>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
+            {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
@@ -215,4 +222,4 @@ const logOut = e => {
   );
 };
 
-export default withRouter(Dashboard);
+export default withRouter(Dashboard)

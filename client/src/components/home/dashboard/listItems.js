@@ -14,19 +14,19 @@ export const mainListItems = (
   <div>
     <ListItem button component={NavLink} to={"/dashboard"}>
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
     <ListItem button component={NavLink} to={"/expenses"}>
       <ListItemIcon>
-        <AttachMoneyIcon />
+        <AttachMoneyIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="View Expenses" />
     </ListItem>
     <ListItem button component={NavLink} to={"/income"}>
       <ListItemIcon>
-        <AccountBalanceWalletIcon />
+        <AccountBalanceWalletIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="View Income" />
     </ListItem>
@@ -35,16 +35,15 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader>Expense & Income Updates</ListSubheader>
     <ListItem button component={NavLink} to={"/add-expense"}>
       <ListItemIcon>
-        <AddCircleOutlineIcon />
+        <AddCircleOutlineIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Add Expense" />
     </ListItem>
     <ListItem button component={NavLink} to={"/add-income"}>
       <ListItemIcon>
-        <AddCircleIcon />
+        <AddCircleIcon color="primary" />
       </ListItemIcon>
       <ListItemText primary="Add Income" />
     </ListItem>
