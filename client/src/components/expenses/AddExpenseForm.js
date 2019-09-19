@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
+import { Redirect } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
 import { addExpense } from "../../actions/expenseActions";
@@ -41,7 +42,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddExpenseForm = props => {
-  console.log(props);
   const classes = useStyles();
   const [input, setInput] = useState({
     user_id: localStorage.getItem("user_id"),
@@ -61,15 +61,10 @@ const AddExpenseForm = props => {
     }));
   };
 
-  const addNewExpense = e => {
+  const addNewExpense = async (e) => {
     e.preventDefault();
-    props.addExpense(input);
-    if (props.expenses) {
-      console.log(props.expenses);
+   await props.addExpense(input);
       props.history.push("/dashboard"); //need to figure out why routing to empty dashboard.
-    } else {
-      alert("There was an error adding that expense. Please try again.");
-    }
   };
 
   return (
