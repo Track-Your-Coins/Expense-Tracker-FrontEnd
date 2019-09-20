@@ -47,18 +47,16 @@ const IncomeList = props => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {income.map(income => {
-              if (income) {
+            { income ?
+            income.map(income => {
                 return (
                   <TableRow key={income.id}>
                     <TableCell>{income.payor}</TableCell>
                     <TableCell>{income.amount}</TableCell>
                   </TableRow>
-                );
-              } else {
-                return null;
-              }
-            })}
+                )
+            }) : null
+             }
           </TableBody>
         </Table>
       </Paper>

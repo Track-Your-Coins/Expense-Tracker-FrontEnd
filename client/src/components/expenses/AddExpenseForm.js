@@ -64,7 +64,7 @@ const AddExpenseForm = props => {
   const addNewExpense = async (e) => {
     e.preventDefault();
    await props.addExpense(input);
-      props.history.push("/dashboard"); //need to figure out why routing to empty dashboard.
+      props.history.push("/dashboard");
   };
 
   return (

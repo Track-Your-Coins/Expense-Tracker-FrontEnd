@@ -40,7 +40,6 @@ const ExpenseTable = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-        {console.log("EXPENSESTABLE", expenses)}
           { expenses ?
             expenses.map(expense => {
                 return (

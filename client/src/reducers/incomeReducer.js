@@ -30,7 +30,7 @@ export const incomeReducer = (state = initialState, action) => {
     case ADD_INCOME_SUCCESS:
       return {
         ...state,
-        income: action.payload
+        income: [...state.income, action.payload]
       };
     case ADD_INCOME_FAILURE:
       return {
