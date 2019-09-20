@@ -34,7 +34,7 @@ const ExpenseList = props => {
   useEffect(() => {
     const id = localStorage.getItem("user_id");
     props.fetchExpense(id);
-  }, expenses);
+  }, []);
 
   return (
     <div>

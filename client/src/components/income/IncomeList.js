@@ -32,7 +32,7 @@ const IncomeList = props => {
   useEffect(() => {
     const id = localStorage.getItem("user_id");
     props.fetchIncome(id);
-  }, income);
+  }, []);
 
   return (
     <div>
