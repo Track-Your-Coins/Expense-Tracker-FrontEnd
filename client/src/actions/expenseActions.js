@@ -10,6 +10,7 @@ export const addExpense = newExpense => dispatch => {
   return axiosWithAuth()
     .post("https://track-your-coins-be.herokuapp.com/api/expenses", newExpense)
     .then(res => {
+        console.log("RESDATA", res.data)
       dispatch({ type: ADD_EXPENSE_SUCCESS, payload: res.data });
     })
     .catch(err => {

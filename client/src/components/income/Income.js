@@ -8,16 +8,20 @@ const Income = props => {
   const { income, expenses, error } = props;
 
     useEffect(() => {
-        const id = localStorage.getItem("user_id");
-        props.fetchIncome(id);
+        getIncome()
     },[]);
+
+    const getIncome = async () => {
+         const id = localStorage.getItem("user_id");
+        const allIncome = await props.fetchIncome(id);
+    }
 
   //total income
   const totalIncome = income.reduce((acc, x) => acc + x.amount, 0);
 
   //total expenses
       const Num = [];
-  let expenseAmount = expenses.forEach(num => {
+    let expenseAmount = expenses.forEach(num => {
       Num.push(Number(num.amount))
   })
   let reducedExpenses = Num.reduce((acc, ex) => acc + ex, 0);

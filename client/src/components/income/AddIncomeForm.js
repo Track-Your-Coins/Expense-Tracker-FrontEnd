@@ -55,10 +55,10 @@ const AddIncomeForm = props => {
     }));
   };
 
-  const addNewIncome = e => {
+  const addNewIncome = async e => {
     e.preventDefault();
-    props.addIncome(input);
-    props.history.push("/dashbaord"); //figure this out. rendering an empty dashboard upon successful add
+    await props.addIncome(input);
+    props.history.push("/dashboard");
   };
 
   return (
