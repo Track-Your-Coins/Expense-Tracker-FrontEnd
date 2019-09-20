@@ -30,7 +30,7 @@ export const expenseReducer = (state = initialState, action) => {
     case ADD_EXPENSE_SUCCESS:
       return {
         ...state,
-        expenses: action.payload
+        expenses: [...state.expenses, action.payload]
       };
     case ADD_EXPENSE_FAILURE:
       return {
